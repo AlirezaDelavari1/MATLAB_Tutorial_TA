@@ -1,0 +1,133 @@
+clc, clearvars
+
+%Functions
+
+%Syntax:
+% function [output1, output2, ...] = functionName(input1, input2, ...)
+%     % Code to perform computations
+% end
+
+
+greet();
+
+result = addNumbers(3, 5);
+disp(['The sum is: ', num2str(result)]);
+
+[sumVal, diffVal] = addSubtract(10, 4);
+disp(['Sum: ', num2str(sumVal), ', Difference: ', num2str(diffVal)]);
+
+setGlobalVar();
+getGlobalVar();
+
+%Built-in MATLAB Functions
+A = [1, 2, 3; 4, 5, 6; 7, 8, 9];
+disp(['Mean of A: ', num2str(mean(A(:)))]);
+disp(['Max of A: ', num2str(max(A(:)))]);
+
+%Anonymous Functions
+%f = @(x) x^2 + 2*x + 1;
+squareFunc = @(x) x^2;
+result = squareFunc(5);
+disp(['Square of 5: ', num2str(result)]);
+
+%Function Handles for User-Defined Functions
+% Create a function handle for 'myFunction'
+myFuncHandle = @myFunction;
+
+% Call the function using the handle
+result = myFuncHandle(3)
+
+parentFunction();
+
+%Nested Functions
+T = [-59 24 53 12 -45];
+max_T = max(abs(T))
+
+disp(['Is 7 prime? ', num2str(checkPrime(7))]);
+disp(['Is 8 prime? ', num2str(checkPrime(8))]);
+
+disp(['Factorial of 5: ', num2str(factorialFunc(5))]);
+
+%-----------------------------------------------------------
+
+%Simple Function
+function greet()
+    disp('Hello, MATLAB World!');
+end
+
+%Creating User-Defined Functions
+%Input and Output Arguments
+function sumResult = addNumbers(a, b)
+    sumResult = a + b;
+end
+
+%Function with Multiple Outputs
+function [sum, difference] = addSubtract(x, y)
+    sum = x + y;
+    difference = x - y;
+end
+
+%Variable Scope in Functions
+function demoScope()
+    localVar = 10;
+    disp(['Local Variable: ', num2str(localVar)]);
+end
+
+%Global Variables
+function setGlobalVar()
+    global myVar;
+    myVar = 20;
+end
+
+function getGlobalVar()
+    global myVar;
+    disp(['Global Variable: ', num2str(myVar)]);
+end
+
+%Function Handles for User-Defined Functions
+function y = myFunction(x)
+    y = x^2 + 2*x + 1;
+end
+
+%Nested Functions
+function parentFunction()
+    a = 5;
+    nestedFunction();
+    
+    function nestedFunction()
+        disp(['Accessing variable from parent function: ', num2str(a)]);
+    end
+end
+
+%Practical Examples and Exercises
+%Function to Check if a Number is Prime
+function isPrime = checkPrime(n)
+    isPrime = true;
+    if n <= 1
+        isPrime = false;
+        return;
+    end
+    for i = 2:sqrt(n)
+        if mod(n, i) == 0
+            isPrime = false;
+            return;
+        end
+    end
+end
+
+%Write a function that calculates the factorial of a number.
+function fact = factorialFunc(n)
+    fact = 1;
+    for i = 1:n
+        fact = fact * i;
+    end
+end
+
+disp(['Factorial of 5: ', num2str(factorialFunc(5))]);
+
+
+
+
+
+
+
